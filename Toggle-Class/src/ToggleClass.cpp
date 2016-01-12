@@ -7,4 +7,43 @@
 
 #include "ToggleClass.h"
 
+	Toggle::Toggle(int toggle1Val, int toggle2Val)
+	{
+		m_status = toggle1Val;
+		m_toggleVal1 = toggle1Val;
+		m_toggleVal2 = toggle2Val;
 
+		m_risingEdgeMem = true;
+	}
+
+	//Returns true on a rising edge, else, returns false
+	bool Toggle::risingEdge(bool varToEdgeCheck){
+		if(varToEdgeCheck){
+			if(m_risingEdgeMem){
+				m_risingEdgeMem = false;
+				return true;
+			}
+		}else{
+			m_risingEdgeMem = true;
+			return false;
+		}
+		return false;
+}
+
+	//Changes the output state between the two values described in the constructor
+	void Toggle::toggleStatus(){
+		if (m_status == m_toggleVal1){
+			m_status = m_toggleVal2;
+		}else{
+			m_status = m_toggleVal1;
+		}
+	}
+
+	//If an edge change is present, changes the output state and then returns the new state,
+	//else, returns the old state
+	int Toggle::toggleStatusOnEdgeChange(bool checkedVar){
+		if(risingEdge(checkedVar)){
+			toggleStatus();
+		}
+		return getStatus();
+	}
