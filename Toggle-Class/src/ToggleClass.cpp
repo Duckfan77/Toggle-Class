@@ -60,9 +60,19 @@ void Toggle::toggleStatus(){
 
 //If an edge change is present, changes the output state and then returns the new state,
 //else, returns the old state
-int Toggle::toggleStatusOnEdgeChange(bool checkedVar){
-	if(risingEdge(checkedVar)){
-		toggleStatus();
+int Toggle::toggleStatusOnEdgeChange(bool checkedVar, int edgeMode = 1){
+	if(edgeMode == -1){
+		if(fallingEdge(checkedVar)){
+			toggleStatus();
+		}
+	}else if(edgeMode == 0){
+		if(dualEdge(checkedVar)){
+			toggleStatus();
+		}
+	}else if(edgeMode == 1){
+		if(risingEdge(checkedVar)){
+			toggleStatus();
+		}
 	}
 	return getStatus();
 }
