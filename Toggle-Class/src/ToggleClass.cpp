@@ -67,16 +67,16 @@ void Toggle<T>::toggleStatus(){
 template <typename T>
 //If an edge change is present, changes the output state and then returns the new state,
 //else, returns the old state
-T Toggle<T>::toggleStatusOnEdgeChange(bool checkedVar, int edgeMode = 1){
-	if(edgeMode == -1){
+T Toggle<T>::toggleStatusOnEdgeChange(bool checkedVar, edgeType edgeMode = Toggle<T>::KRisingEdge){
+	if(edgeMode == Toggle<T>::KFallingEdge){
 		if(fallingEdge(checkedVar)){
 			toggleStatus();
 		}
-	}else if(edgeMode == 0){
+	}else if(edgeMode == Toggle<T>::KDualEdge){
 		if(dualEdge(checkedVar)){
 			toggleStatus();
 		}
-	}else if(edgeMode == 1){
+	}else if(edgeMode == Toggle<T>::KRisingEdge){
 		if(risingEdge(checkedVar)){
 			toggleStatus();
 		}

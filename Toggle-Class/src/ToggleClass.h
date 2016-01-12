@@ -18,6 +18,12 @@ private:
 
 	bool m_risingEdgeMem;
 	bool m_fallingEdgeMem;
+
+	enum edgeType{
+		KRisingEdge,
+		KDualEdge,
+		KFallingEdge,
+	};
 public:
 
 	//toggle1Val is the current value passed to the function being toggled between two values,
@@ -29,11 +35,9 @@ public:
 	bool dualEdge (bool varToEdgeCheck);
 	void toggleStatus();
 
-	//edgeMode is used to change which type of edge is detected, with 1 being rising edge,
-	//-1 being falling edge, and 0 being dual edge.
-	//The default value is 1, or rising edge.
-	//If a nonvalid value is passed to edgeMode, no edge checking or value toggling takes place;
-	T toggleStatusOnEdgeChange(bool varToEdgeCheck, int edgeMode = 1);
+	//edgeMode is used to change which type of edge is detected, with the default being risingEdge
+	//The options are KRisingEdge, KDualEdge, and KFallingEdge
+	T toggleStatusOnEdgeChange(bool varToEdgeCheck, edgeType edgeMode = KRisingEdge);
 
 	T getStatus(){
 		return m_status;
