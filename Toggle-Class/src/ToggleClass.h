@@ -107,6 +107,7 @@ public:
 	}
 
 	//Sets the current state of the Toggle. MUST BE ONE OF THE TOGGLEABLE VALUES SET IN THE CONSTRUCTOR
+	//If valueToSet isn't one of the values set in the constructor the function will silently fail.
 	void setStatus(T valueToSet){
 		if(valueToSet == m_toggleVal1 || valueToSet == m_toggleVal2){
 			m_status = valueToSet;
